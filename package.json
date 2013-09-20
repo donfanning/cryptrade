@@ -1,0 +1,38 @@
+{
+  "name": "cryptrade",
+  "version": "0.0.1",
+  "description": "Bitcoin trading bot based on Node/JS",
+  "main": "cryptrade.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pulsecat/cryptrade.git"
+  },
+  "keywords": [
+    "nodejs",
+    "bitcoin",
+    "trading",
+    "mtgox",
+    "bitstamp"
+  ],
+  "author": "Pulsecat",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/pulsecat/cryptrade/issues"
+  },
+  "dependencies": {
+    "bitstamp": "git+https://github.com/pulsecat/bitstamp.git",
+    "attempt": "~1.0.0",
+    "commander": "~2.0.0",
+    "underscore": "~1.5.2",
+    "fibers": "~1.0.1",
+    "cson": "~1.4.4",
+    "socket.io-client": "~0.9.16",
+    "winston": "~0.7.2",
+    "mtgox-apiv2": "~1.0.6",
+    "talib": "~0.2.12",
+    "iced-coffee-script": "~1.6.3-g"
+  }
+}

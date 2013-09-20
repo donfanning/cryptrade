@@ -1,0 +1,5 @@
+{
+    platform: "bitstamp"
+    instrument: "btc_usd"
+    period: "2h"
+}

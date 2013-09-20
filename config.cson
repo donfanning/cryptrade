@@ -1,0 +1,12 @@
+{
+    data_provider: "http://127.0.0.1:8000"
+    platform: "mtgox"
+    instrument: "btc_usd"
+    period: "1h"
+    init_data_length:250
+    max_retries: 10
+    min_order: 0.01
+    retry_interval: 15
+    check_order_interval: 30
+}
+
