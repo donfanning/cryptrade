@@ -84,18 +84,16 @@ if require.main == module
       instrument:config.instrument
       period:config.period
       limit:config.init_data_length
-    ,(result)->
-      console.log result
-  client.socket.on 'data_message', (msg)->
+  client.on 'data_message', (msg)->
     logger.warn 'Server message: '+err
-  client.socket.on 'data_error', (err)->
+  client.on 'data_error', (err)->
     logger.error err
-  client.socket.on 'data_init',(bars)->
+  client.on 'data_init',(bars)->
     logger.verbose "Received historical market data #{bars.length} bar(s)"
     trader = new Trader name,config,script
     logger.info "Pre-initializing trader with historical market data"
     trader.init(bars)
-  client.socket.on 'data_update',(bars)->
+  client.on 'data_update',(bars)->
     logger.verbose "Market data update #{bars.length} bar(s)"
     if trader?
       for bar in bars

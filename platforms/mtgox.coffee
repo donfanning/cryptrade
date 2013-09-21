@@ -16,14 +16,15 @@ class MtGoxPlatform extends Platform
     attempt {retries:@config.max_retries,interval:@config.retry_interval*1000},
       ->
         self.client.info @
-      ,(err,result)->
+      ,(err,response)->
         if err?
           logger.error "getPositions: reached max retries #{err}"
         else
           result = {}
-          for curr, wallet of result.data.Wallets
+          for curr, wallet of response.data.Wallets
+            curr = curr.toLowerCase()
             if curr in positions
-              result[curr.toLowerCase()] = parseFloat(wallet.Balance.value)
+              result[curr] = parseFloat(wallet.Balance.value)
           cb(result)
     
   trade: (order, cb)->
