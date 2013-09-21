@@ -1,7 +1,7 @@
-**Obviously the thing to do was to be bullish in a bull market and bearish in a bear market.**
+Obviously the thing to do was to be bullish in a bull market and bearish in a bear market.
 
 
-*Reminiscences of a Stock Operator by J. Livermore*
+  *Reminiscences of a Stock Operator by J. Livermore*
 
 cryptrade
 =========
