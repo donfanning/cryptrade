@@ -16,7 +16,8 @@ popular exchanges such as MtGox and Bitstamp.
     git clone https://github.com/pulsecat/cryptrade.git
     npm install
     
-  - Open keys.cson and put your API keys of the exchanges you want to trade on
+  - Open keys.cson and put your API keys of the exchanges you want to trade on. 
+    *Private keys are never sent to the server*
   
 ## Usage
   To start trading bot, just type
