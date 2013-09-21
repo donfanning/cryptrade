@@ -34,6 +34,7 @@
     "winston": "~0.7.2",
     "mtgox-apiv2": "~1.0.6",
     "talib": "~0.2.12",
-    "iced-coffee-script": "~1.6.3-g"
+    "iced-coffee-script": "~1.6.3-g",
+    "coffee-script": "~1.6.3"
   }
 }
