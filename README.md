@@ -1,11 +1,11 @@
+*Obviously the thing to do was to be bullish in a bull market and bearish in a bear market.*
+Reminiscences of a Stock Operator by J. Livermore
+
 cryptrade
 =========
 
 NodeJS trading client for Cryptotrader.org
 
-*Obviously the thing to do was to be bullish in a bull market and bearish in a bear market.*
-
-                                            Reminiscences of a Stock Operator by J. Livermore
 
 Cryptrade is a standalone client for Cryptotrader.org. The main purpose of this tool is to allow automated trading at 
 popular exchanges such as MtGox and Bitstamp. 
@@ -13,7 +13,7 @@ popular exchanges such as MtGox and Bitstamp.
 ## Installation
 
   - Make sure you have [Node](http://nodejs.org/) installed 
-  - Install cryptotrade tool
+  - Install cryptrade tool
     
         cd cryptrade
         git clone https://github.com/pulsecat/cryptrade.git
