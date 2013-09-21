@@ -1,5 +1,6 @@
 {
     platform: "bitstamp"
     instrument: "btc_usd"
+    min_order: 1 # in USD
     period: "2h"
 }

@@ -1,5 +1,5 @@
 {
-    data_provider: "http://127.0.0.1:8000"
+    data_provider: "http://data.cryptotrader.org"
     platform: "mtgox"
     instrument: "btc_usd"
     period: "1h"

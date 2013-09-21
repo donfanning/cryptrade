@@ -1,6 +1,6 @@
+_ = require 'underscore'
 fs = require 'fs'
 basename = require('path').basename
-_ = require 'underscore'
 io = require('socket.io-client')
 CoffeeScript = require 'coffee-script'
 program = require 'commander'
@@ -75,25 +75,27 @@ if require.main == module
   script = CoffeeScript.compile code,
     bare:true
   logger.info 'Connecting to data provider..'
-  socket = io.connect config.data_provider
+  client = io.connect config.data_provider
   trader = undefined
-  socket.on 'connect', ->
+  client.socket.on 'connect', ->
     logger.info "Subscribing to data source #{config.platform} #{config.instrument} #{config.period}"
-    socket.emit 'subscribeDataSource', version,config.cryptotrader.api_key,
+    client.emit 'subscribeDataSource', version, config.cryptotrader.api_key,
       platform:config.platform
       instrument:config.instrument
       period:config.period
       limit:config.init_data_length
-  socket.on 'data_message', (msg)->
+    ,(result)->
+      console.log result
+  client.socket.on 'data_message', (msg)->
     logger.warn 'Server message: '+err
-  socket.on 'data_error', (err)->
+  client.socket.on 'data_error', (err)->
     logger.error err
-  socket.on 'data_init',(bars)->
+  client.socket.on 'data_init',(bars)->
     logger.verbose "Received historical market data #{bars.length} bar(s)"
     trader = new Trader name,config,script
     logger.info "Pre-initializing trader with historical market data"
     trader.init(bars)
-  socket.on 'data_update',(bars)->
+  client.socket.on 'data_update',(bars)->
     logger.verbose "Market data update #{bars.length} bar(s)"
     if trader?
       for bar in bars

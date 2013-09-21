@@ -1,4 +1,4 @@
-##
+###
   EMA CROSSOVER TRADING ALGORITHM
   The script engine is based on CoffeeScript (http://coffeescript.org)
   Any trading algorithm needs to implement two methods: 
