@@ -12,10 +12,10 @@ popular exchanges such as MtGox and Bitstamp.
   - Make sure you have [Node](http://nodejs.org/) installed 
   - Install cryptotrade tool
     
-      cd cryptrade
-      git clone https://github.com/pulsecat/cryptrade.git
-      npm install
-    
+        cd cryptrade
+        git clone https://github.com/pulsecat/cryptrade.git
+        npm install
+
   - Open keys.cson and put your API keys of the exchanges you want to trade on. 
     *Private keys are never sent to the server*
   
