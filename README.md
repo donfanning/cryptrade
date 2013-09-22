@@ -32,7 +32,7 @@ popular exchanges such as MtGox and Bitstamp.
   The above command will start EMA 10/21 algorithm to trade at Mtgox BTC/USD with trading period set to 1h. 
   Also, you can run the tool with an algorithm stored locally. In this case your algorithm won't be sent to the server:
   
-    cryptrade.sh examples/ema_10_21.coffee
+    ./cryptrade.sh examples/ema_10_21.coffee
   
         
    Default configuration can be overriden by command line options:
@@ -49,7 +49,7 @@ popular exchanges such as MtGox and Bitstamp.
       
   For example, to start the above algorithm at Bitstamp with trading period set to 2 hours use the following command:
     
-    cryptrade.sh -p bitstamp -t 2h examples/ema_10_21.coffee
+    ./cryptrade.sh -p bitstamp -t 2h examples/ema_10_21.coffee
     
     
 
