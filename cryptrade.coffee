@@ -65,9 +65,9 @@ if require.main == module
   unless code?
     logger.error "Unable load source code from #{source}"
     process.exit 1
-  config.platform = program.platform or platform or config.platform
-  config.instrument = program.instrument or instrument or config.instrument
-  config.period = program.period or period or config.period
+  config.platform = program.platform or config.platform or platform
+  config.instrument = program.instrument or config.instrument or instrument
+  config.period = program.period or config.period or period
   if not fs.existsSync 'logs'
     fs.mkdirSync 'logs'
   logger.add logger.transports.File,{level:'verbose',filename:"logs/#{name}.log"}
