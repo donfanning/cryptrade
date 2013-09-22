@@ -17,8 +17,8 @@ popular exchanges such as MtGox and Bitstamp.
   - Make sure you have [Node](http://nodejs.org/) installed 
   - Install cryptrade tool
     
-        cd cryptrade
         git clone https://github.com/pulsecat/cryptrade.git
+        cd cryptrade
         npm install
 
   - Open keys.cson and put your API keys of the exchanges you want to trade on. 
@@ -35,7 +35,7 @@ popular exchanges such as MtGox and Bitstamp.
     cryptrade.sh examples/ema_10_21.coffee
   
         
-  Some options can be overriden by using command line options:
+   Default configuration can be overriden by command line options:
   
     Usage: cryptrade.coffee [options] <filename or backtest url in format https://cryptotrader.org/backtests/<id>>
 
