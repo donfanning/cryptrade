@@ -11,6 +11,7 @@ class BitstampPlatform extends Platform
     @client = new Bitstamp @config.bitstamp.user,@config.bitstamp.password
   trade: (order, cb)->
     if order.maxAmount * order.price < @config.min_order
+      logger.verbose "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount #{@config.min_order} USD"
       return
     orderCb = (err,result)->
       if err?
