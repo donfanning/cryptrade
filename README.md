@@ -13,7 +13,7 @@ Cryptrade is a standalone client for Cryptotrader.org. The main purpose of this 
 popular exchanges such as MtGox and Bitstamp. 
 
 ## Features
-  - Support for 125+ indicators such as EMA, MACD, etc [Talib](ta-lib.org/).
+  - Support for 125+ [Talib](http://ta-lib.org/) indicators such as EMA, MACD, etc. 
   - Real time trading at Mtgox & Bitstamp
   - Compatible with Cryptotrader.org API
 
