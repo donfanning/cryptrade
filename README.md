@@ -12,6 +12,11 @@ NodeJS trading client for Cryptotrader.org
 Cryptrade is a standalone client for Cryptotrader.org. The main purpose of this tool is to allow automated trading at 
 popular exchanges such as MtGox and Bitstamp. 
 
+## Features
+  - Support for 125+ indicators such as EMA, MACD, etc [Talib](ta-lib.org/).
+  - Real time trading at Mtgox & Bitstamp
+  - Compatible with Cryptotrader.org API
+
 ## Installation
 
   - Make sure you have [Node](http://nodejs.org/) installed 
