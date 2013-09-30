@@ -1,12 +1,17 @@
-{
-    data_provider: "http://data.cryptotrader.org"
-    platform: "mtgox"
-    instrument: "btc_usd"
-    period: "1h"
-    init_data_length:250
-    max_retries: 10
+data_provider: "http://data.cryptotrader.org"
+platform: "mtgox"
+instrument: "btc_usd"
+period: "1h"
+init_data_length:250
+check_order_interval: 30
+
+platforms:
+  mtgox:
     min_order: 0.01
+    max_retries: 10
     retry_interval: 15
-    check_order_interval: 30
-}
+  bitstamp:
+    min_order: 0.01 
+    max_retries: 10
+    retry_interval
 

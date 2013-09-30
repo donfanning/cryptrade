@@ -2,23 +2,24 @@ _ = require 'underscore'
 Bitstamp = require 'bitstamp'
 Platform = require '../platform'
 attempt = require 'attempt'
-logger = require 'winston'
 
 class BitstampPlatform extends Platform
-  init: (@config)->
-    unless @config.bitstamp.user or @config.bitstamp.password
+  init: (@config,@pair,@account)->
+    unless @account.username or @account.password
       throw new Error 'BistampPlatform: user and password must be provided'
-    @client = new Bitstamp @config.bitstamp.user,@config.bitstamp.password
+    @client = new Bitstamp @account.username,@account.password
   trade: (order, cb)->
-    if order.maxAmount * order.price < @config.min_order
-      logger.verbose "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount #{@config.min_order} USD"
+    console.log @config
+    console.log order
+    if order.maxAmount * order.price < parseFloat(@config.min_order)
+      cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount #{@config.min_order} USD"
       return
     orderCb = (err,result)->
       if err?
-        logger.error err
+        cb err
       else
         if result.error?
-          logger.error result.error
+          cb result.error
         else
           cb null, result.id
     self = @
@@ -44,11 +45,11 @@ class BitstampPlatform extends Platform
         self.client.open_orders @
       ,(err,result)->
         if err?
-          logger.error "isOrderActive: reached max retries #{err}"
+          cb "isOrderActive: reached max retries #{err}"
         else
           order = _.find result, (order)->
             order.id == orderId
-          cb order?
+          cb null,order?
 
   cancelOrder: (orderId, cb)->
     self = @
@@ -57,9 +58,9 @@ class BitstampPlatform extends Platform
         self.client.cancel_order orderId, @
       ,(err,result)->
         if err?
-          logger.error "cancelOrder: reached max retries #{err}"
+          cb "cancelOrder: reached max retries #{err}"
         if cb?
-          cb()
+          cb null
 
   getPositions: (positions,cb)->
     self = @
@@ -68,10 +69,10 @@ class BitstampPlatform extends Platform
         self.client.balance @
       ,(err,data)->
         if err?
-          logger.error "getPositions: reached max retries #{err}"
+          cb "getPositions: reached max retries #{err}"
         else
           if data.error?
-            logger.error "getPositions: #{result.error}"
+            cb "getPositions: #{result.error}"
           else
             result = {}
             for item, amount of data
@@ -79,7 +80,7 @@ class BitstampPlatform extends Platform
                 curr = item.substr(0, 3)
                 if curr in positions
                   result[curr] = parseFloat(amount)
-            cb result
+            cb null, result
       
   getTicker: (cb)->
     self = @
@@ -88,9 +89,9 @@ class BitstampPlatform extends Platform
         self.client.ticker @
       ,(err,result)->
         if err?
-          logger.error "getTicker: reached max retries #{err}"
+          cb "getTicker: reached max retries #{err}"
         else
-          cb
+          cb null,
             buy: parseFloat(result.bid)
             sell: parseFloat(result.ask)
 

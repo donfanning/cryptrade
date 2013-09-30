@@ -35,7 +35,6 @@ if require.main == module
   unless keys?
     logger.error 'Unable to open keys.cson'
     process.exit 1
-  config = _.extend config,keys
   if program.args.length > 1
     logger.error "Too many arguments"
     process.exit 1
@@ -90,7 +89,7 @@ if require.main == module
     logger.error err
   client.on 'data_init',(bars)->
     logger.verbose "Received historical market data #{bars.length} bar(s)"
-    trader = new Trader name,config,script
+    trader = new Trader name,config,keys[config.platform],script
     logger.info "Pre-initializing trader with historical market data"
     trader.init(bars)
   client.on 'data_update',(bars)->
