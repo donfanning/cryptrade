@@ -9,8 +9,6 @@ class BitstampPlatform extends Platform
       throw new Error 'BistampPlatform: user and password must be provided'
     @client = new Bitstamp @account.username,@account.password
   trade: (order, cb)->
-    console.log @config
-    console.log order
     if order.maxAmount * order.price < parseFloat(@config.min_order)
       cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount #{@config.min_order} USD"
       return

@@ -6,7 +6,7 @@ attempt = require 'attempt'
 class MtGoxPlatform extends Platform
   init: (@config,@pair,@account)->
     pair = @pair.replace('_','').toUpperCase()
-    unless @config.mtgox.key or @config.mtgox.secret
+    unless @account.key or @account.secret
       throw new Error 'MtgoxPlatform: key and secret must be provided'
     @client = new MtGoxClient @account.key,@account.secret,pair
 
