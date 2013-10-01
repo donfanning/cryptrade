@@ -1,6 +1,6 @@
 {
   "name": "cryptrade",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Bitcoin trading bot based on Node/JS",
   "main": "cryptrade.coffee",
   "scripts": {

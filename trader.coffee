@@ -4,11 +4,13 @@ vm = require 'vm'
 Fiber = require 'fibers'
 inspect = require('./utils').inspect
 Instrument = require './instrument'
+talib = require './talib_sync'
 
 class Trader
   constructor: (@name,@config,@script)->
     @sandbox = 
       _:_
+      talib: talib
       portfolio: 
         positions: {}
       debug: (message)->
