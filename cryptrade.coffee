@@ -79,7 +79,7 @@ if require.main == module
   trader = undefined
   client.socket.on 'connect', ->
     logger.info "Subscribing to data source #{config.platform} #{config.instrument} #{config.period}"
-    client.emit 'subscribeDataSource', version, config.cryptotrader.api_key,
+    client.emit 'subscribeDataSource', version, keys.cryptotrader.api_key,
       platform:config.platform
       instrument:config.instrument
       period:config.period
