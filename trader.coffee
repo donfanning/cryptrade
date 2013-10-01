@@ -7,7 +7,7 @@ Instrument = require './instrument'
 talib = require './talib_sync'
 
 class Trader
-  constructor: (@name,@config,@script)->
+  constructor: (@name,@config,@account,@script)->
     @sandbox = 
       _:_
       talib: talib
@@ -43,7 +43,7 @@ class Trader
     platformCls = require('./platforms/'+config.platform)
     platform = new platformCls()
     try
-      platform.init config
+      platform.init config[config.platform],config.instrument,@account
     catch e
       logger.error e.message
       process.exit 1
@@ -54,18 +54,24 @@ class Trader
     @sandbox.init @context
 
   updateTicker: (platform,cb)->
-    platform.getTicker (ticker)=>
-      logger.verbose "updateTicker: #{inspect(ticker)}"
-      @ticker = ticker
-      cb()
+    platform.getTicker (err,ticker)=>
+      if err?
+        logger.error err
+      else
+        logger.verbose "updateTicker: #{inspect(ticker)}"
+        @ticker = ticker
+        cb()
 
   updatePortfolio: (positions,platform,cb)->
-    platform.getPositions positions,(result)=>
-      logger.verbose "updatePortfolio: #{inspect(result)}"
-      for curr,amount of result
-        @sandbox.portfolio.positions[curr] =
-          amount:amount
-      cb()
+    platform.getPositions positions,(err, result)=>
+      if err?
+        logger.error err
+      else
+        logger.verbose "updatePortfolio: #{inspect(result)}"
+        for curr,amount of result
+          @sandbox.portfolio.positions[curr] =
+            amount:amount
+        cb()
 
   calcPositions: (pair)->
     asset = pair[0]
@@ -91,7 +97,7 @@ class Trader
         break
     platform.trade order, (err,orderId)=>
       if err?
-        logger.error err
+        logger.info err
         return
       if orderId
         switch order.type
@@ -104,13 +110,18 @@ class Trader
             logger.info "SELL order ##{orderId} amount: #{amount} #{order.asset.toUpperCase()} @ #{order.price}"
             break
         setTimeout =>
-          platform.isOrderActive orderId,(active)=>
+          platform.isOrderActive orderId,(err,active)=>
+            if err?
+              logger.error err
             if active
               logger.info "Canceling order ##{orderId} as it was inactive for #{@config.check_order_interval} seconds."
-              platform.cancelOrder orderId, =>
-                logger.info "Creating new order.."
-                @updateTicker platform,=>
-                  @trade order, cb
+              platform.cancelOrder orderId, (err)=>
+                if err?
+                  logger.error err
+                else
+                  logger.info "Creating new order.."
+                  @updateTicker platform,=>
+                    @trade order, cb
             else
               @updatePortfolio [order.asset,order.curr], order.platform,=>
                 balance = @calcPositions [order.asset,order.curr]

@@ -11,7 +11,7 @@ if (!fs.existsSync('keys.cson')) {
       secret: ''
     },
     bitstamp: {
-      user: '',
+      username: '',
       password: ''
     },
   } 
