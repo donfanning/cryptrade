@@ -55,7 +55,7 @@ if require.main == module
     platform = backtest.platform
     instrument = backtest.instrument
     period = backtest.period
-    name = backtest.name
+    name = m[1]
     code = backtest.code
   else 
     code = fs.readFileSync source,

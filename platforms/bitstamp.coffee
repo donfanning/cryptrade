@@ -70,7 +70,7 @@ class BitstampPlatform extends Platform
           cb "getPositions: reached max retries #{err}"
         else
           if data.error?
-            cb "getPositions: #{result.error}"
+            cb "getPositions: #{data.error}"
           else
             result = {}
             for item, amount of data
