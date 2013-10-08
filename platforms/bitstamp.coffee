@@ -5,9 +5,9 @@ attempt = require 'attempt'
 
 class BitstampPlatform extends Platform
   init: (@config,@pair,@account)->
-    unless @account.username or @account.password
-      throw new Error 'BistampPlatform: user and password must be provided'
-    @client = new Bitstamp @account.username,@account.password
+    unless @account.clientid and @account.key and @account.secret 
+      throw new Error 'BistampPlatform: client id, API key and secret must be provided'
+    @client = new Bitstamp @account.clientid,@account.key,@account.secret
   trade: (order, cb)->
     if order.maxAmount * order.price < parseFloat(@config.min_order)
       cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount #{@config.min_order} USD"

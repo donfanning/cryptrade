@@ -11,8 +11,9 @@ if (!fs.existsSync('keys.cson')) {
       secret: ''
     },
     bitstamp: {
-      username: '',
-      password: ''
+      clientid: '',
+      key: '',
+      secret: ''
     },
   } 
   CSON.stringify(keys, function(err,str) {

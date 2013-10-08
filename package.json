@@ -24,7 +24,6 @@
     "url": "https://github.com/pulsecat/cryptrade/issues"
   },
   "dependencies": {
-    "bitstamp": "git+https://github.com/pulsecat/bitstamp.git",
     "attempt": "~1.0.0",
     "commander": "~2.0.0",
     "underscore": "~1.5.2",
@@ -35,6 +34,7 @@
     "mtgox-apiv2": "~1.0.6",
     "talib": "~0.2.12",
     "iced-coffee-script": "~1.6.3-g",
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.6.3",
+    "bitstamp": "git+https://github.com/pulsecat/bitstamp.git#v0.0.6"
   }
 }
