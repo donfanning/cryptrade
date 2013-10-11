@@ -13,5 +13,5 @@ platforms:
   bitstamp:
     min_order: 0.01 
     max_retries: 10
-    retry_interval
+    retry_interval: 15
 
