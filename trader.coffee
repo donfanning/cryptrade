@@ -43,7 +43,7 @@ class Trader
     platformCls = require('./platforms/'+config.platform)
     platform = new platformCls()
     try
-      platform.init config[config.platform],config.instrument,@account
+      platform.init config.platforms[config.platform],config.instrument,@account
     catch e
       logger.error e.message
       process.exit 1
