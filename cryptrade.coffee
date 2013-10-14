@@ -74,7 +74,6 @@ if require.main == module
   script = CoffeeScript.compile code,
     bare:true
   logger.info 'Connecting to data provider..'
-  console.log config
   client = io.connect config.data_provider, config.socket_io
   trader = undefined
   client.socket.on 'connect', ->
