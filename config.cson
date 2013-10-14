@@ -5,6 +5,13 @@ period: "1h"
 init_data_length:250
 check_order_interval: 30
 
+socket_io:
+  transports: [
+    "websocket"
+    "xhr-polling"
+    "jsonp-polling"
+  ]
+
 platforms:
   mtgox:
     min_order: 0.01
