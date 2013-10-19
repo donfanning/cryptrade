@@ -17,7 +17,6 @@ version = require('./package.json').version
   
   
 if require.main == module
-  #process.env.TZ = 'GMT'
   program = require('commander')
   program
     .usage('[options] <filename or backtest url in format https://cryptotrader.org/backtests/<id>>')
@@ -97,6 +96,10 @@ if require.main == module
     if trader?
       for bar in bars
         trader.handle bar
+  client.on 'error', (err)->
+    logger.error err
+  client.on 'disconnect', ->
+    logger.warn 'Disconnected'
 
 
 

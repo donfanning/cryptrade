@@ -23,4 +23,6 @@ platforms:
     retry_interval: 15
   btce:
     min_order: 0.01
+    max_retries: 10
+    retry_interval: 15
 
