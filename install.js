@@ -15,6 +15,10 @@ if (!fs.existsSync('keys.cson')) {
       key: '',
       secret: ''
     },
+    btce: {
+      key: '',
+      secret: ''
+    }
   } 
   CSON.stringify(keys, function(err,str) {
     if (err) {
