@@ -76,8 +76,8 @@ class Platform
           cb "getTicker: reached max retries #{err}"
         else
           cb null,
-            buy: result.data.buy
-            sell: result.data.sell
+            buy: result.ticker.buy
+            sell: result.ticker.sell
 
 
 
