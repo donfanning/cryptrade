@@ -50,6 +50,7 @@ class Trader
     @data = {}
     instrument = new Instrument(platform,@config.instrument)
     @data[config.instrument] = instrument
+    @data.instruments = [instrument]
     @context = {}
     @sandbox.init @context
 
