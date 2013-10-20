@@ -30,7 +30,7 @@ class Platform
     self = @
     attempt {retries:@config.max_retries,interval:@config.retry_interval*1000},
       ->
-        self.client.trade @pair, order.type, order.price, amount, @
+        self.client.trade self.pair, order.type, order.price, amount, @
       ,orderCb
       
 
