@@ -1,19 +1,26 @@
 _ = require 'underscore'
 BTCE = require 'btc-e'
 attempt = require 'attempt'
+fs = require 'fs'
 
 class Platform
   init: (@config,@pair,@account)->
     unless @account.key and @account.secret
       throw new Error 'Btc-e: key and secret must be provided'
-    @client = new BTCE @account.key,@account.secret
+    if fs.existsSync('nonce.json') 
+      nonce = JSON.parse(fs.readFileSync("nonce.json"))
+    else
+      nonce = 0
+    @client = new BTCE @account.key,@account.secret, ->
+      nonce++
+      fs.writeFile 'nonce.json',nonce
+      nonce
 
   trade: (order, cb)->
     orderCb = (err,result)->
       if err?
         cb err
       else
-        console.log result
         cb null, result.order_id
     if order.maxAmount * order.price < parseFloat(@config.min_order)
       cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount #{@config.min_order} USD"
