@@ -7,13 +7,14 @@ class Platform
   init: (@config,@pair,@account)->
     unless @account.key and @account.secret
       throw new Error 'Btc-e: key and secret must be provided'
-    if fs.existsSync('nonce.json') 
+    if fs.existsSync("nonce_#{config._id}.json") 
       nonce = JSON.parse(fs.readFileSync("nonce.json"))
     else
       nonce = 0
+    key = @account.key
     @client = new BTCE @account.key,@account.secret, ->
       nonce++
-      fs.writeFile 'nonce.json',nonce
+      fs.writeFile "nonce_#{key}.json",nonce
       nonce
 
   trade: (order, cb)->
