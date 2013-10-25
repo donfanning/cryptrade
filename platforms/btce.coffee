@@ -39,7 +39,7 @@ class Platform
     self = @
     attempt {retries:@config.max_retries,interval:@config.retry_interval*1000},
       ->
-        self.client.makeRequest 'activeOrders', {}, @
+        self.client.orderList {}, @
       ,(err,result)->
         if err?
           cb "isOrderActive: reached max retries #{err}"
