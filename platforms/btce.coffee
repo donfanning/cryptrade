@@ -11,7 +11,7 @@ class Platform
     if fs.existsSync("nonce_#{key}.json") 
       nonce = JSON.parse(fs.readFileSync("nonce_#{key}.json"))
     else
-      nonce = new Date().getTime()
+      nonce = Math.floor(new Date().getTime()/1000)
     @client = new BTCE @account.key,@account.secret, ->
       nonce++
       fs.writeFile "nonce_#{key}.json",nonce
