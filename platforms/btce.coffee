@@ -62,7 +62,13 @@ class Platform
 
   getPositions: (positions,cb)->
     self = @
-    attempt {retries:@config.max_retries,interval:@config.retry_interval*1000},
+    fixNonce = (err)->
+      r = /invalid nonce parameter; on key:(\d+)/
+      m = err.toString().match(r)
+      if m
+        nonce = parseInt(m[1])+1
+        fs.writeFile "nonce_#{self.account.key}.json",nonce
+    attempt {retries:@config.max_retries,interval:@config.retry_interval*1000,onError:fixNonce},
       ->
         self.client.getInfo @
       ,(err,result)->
