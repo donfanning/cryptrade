@@ -122,7 +122,8 @@ class Trader
                 else
                   logger.info "Creating new order.."
                   @updateTicker platform,=>
-                    @trade order, cb
+                    @updatePortfolio [order.asset,order.curr], order.platform,=>
+                      @trade order, cb
             else
               @updatePortfolio [order.asset,order.curr], order.platform,=>
                 balance = @calcPositions [order.asset,order.curr]
