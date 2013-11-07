@@ -8,14 +8,13 @@
 # Initialization method called before a simulation starts. 
 # Context object holds script data and will be passed to 'handle' method. 
 init: (context)->
-    context.pair = 'btc_usd'
     context.buy_treshold = 0.25
     context.sell_treshold = 0.25
 
 # This method is called for each tick
 handle: (context, data)->
-    # data object provides access to the current candle (ex. data['btc_usd'].close)
-    instrument = data[context.pair]
+    # data object provides access to the current candle bar
+    instrument = data.instruments[0]
     short = instrument.ema(10) # calculate EMA value using ta-lib function
     long = instrument.ema(21)       
     diff = 100 * (short - long) / ((short + long) / 2)

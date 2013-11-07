@@ -18,6 +18,11 @@ if (!fs.existsSync('keys.cson')) {
     btce: {
       key: '',
       secret: ''
+    },
+    cexio: {
+      clientid: '',
+      key: '',
+      secret: ''
     }
   } 
   CSON.stringify(keys, function(err,str) {

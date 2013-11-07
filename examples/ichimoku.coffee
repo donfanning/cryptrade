@@ -26,7 +26,6 @@ class Ichimoku
         ll = _.min(ins.low[-n..])
         return (hh + ll) / 2
 init: (context)->
-    context.pair = 'btc_usd'
     context.ichi = new Ichimoku()
     context.init = true
     context.pos = null
@@ -34,7 +33,7 @@ init: (context)->
     context.close = 1.75
 handle: (context, data)->
     # data object provides access to the current candle (ex. data['btc_usd'].close)
-    instrument = data[context.pair]
+    instrument = data.instruments[0]
     if context.init
         for i in [0...instrument.close.length]
             t =

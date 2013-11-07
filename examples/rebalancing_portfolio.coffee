@@ -10,13 +10,12 @@
 # Initialization method called before a simulation starts. 
 # Context object holds script data and will be passed to 'handle' method. 
 init: (context)->
-    context.pair = 'btc_usd'
     context.DISTANCE  = 5 # percent price distance of next rebalancing
 
 # This method is called for each tick
 handle: (context, data)->
     # data object provides access to the current candle (ex. data['btc_usd'].close)
-    instrument = data[context.pair]
+    instrument = data.instruments[0]
     fiat_have = portfolio.positions.usd.amount
     btc_have = portfolio.positions.btc.amount
     price_then = instrument.price
