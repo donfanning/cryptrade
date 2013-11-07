@@ -39,14 +39,12 @@ class Platform
     self = @
     attempt {retries:@config.max_retries,interval:@config.retry_interval*1000},
       ->
-        self.client.orderList {}, @
+        self.client.makeRequest 'ActiveOrders', {}, @
       ,(err,result)->
         if err?
           cb "isOrderActive: reached max retries #{err}"
         else
-          order = _.find result, (order)->
-            order.id == orderId
-          cb null, order?
+          cb null, order of result
         
     
   cancelOrder: (orderId, cb)->

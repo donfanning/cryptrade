@@ -100,6 +100,19 @@ class Trader
       if err?
         logger.info err
         return
+      self = @
+      if orderId
+        orderStr = "##{orderId} "
+      else
+        orderStr = '' 
+      orderCb = ->
+        self.updatePortfolio [order.asset,order.curr], order.platform,(err)=>
+          unless err?
+            balance = self.calcPositions [order.asset,order.curr]
+            message = "#{order.type.toUpperCase()} order #{orderStr}traded. Balance: #{balance}"
+            self.sandbox.info message
+            if cb?
+              cb()
       if orderId
         switch order.type
           when 'buy'
@@ -125,12 +138,10 @@ class Trader
                     @updatePortfolio [order.asset,order.curr], order.platform,=>
                       @trade order, cb
             else
-              @updatePortfolio [order.asset,order.curr], order.platform,=>
-                balance = @calcPositions [order.asset,order.curr]
-                logger.info "Order ##{orderId} traded. Balance: #{balance}"
-                if cb?
-                  cb()
+              orderCb()
         ,@config.check_order_interval*1000
+      else
+        orderCb()
 
   init: (bars)->
     instrument = @data[@config.instrument]
