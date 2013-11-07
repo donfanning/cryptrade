@@ -14,7 +14,7 @@ popular exchanges such as MtGox,Bitstamp and BTC-E.
 
 ## Features
   - Support for 125+ [Talib](http://ta-lib.org/) indicators such as EMA, MACD, etc. 
-  - Real time trading at Mtgox, Bitstamp & BTC-E
+  - Real time trading at Mtgox, Bitstamp, BTC-E, CEX.IO
   - Compatible with Cryptotrader.org API
 
 ## Installation
