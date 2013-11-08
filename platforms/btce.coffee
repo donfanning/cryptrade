@@ -24,7 +24,7 @@ class Platform
       else
         cb null, result.order_id
     if order.maxAmount * order.price < parseFloat(@config.min_order)
-      cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount #{@config.min_order} USD"
+      cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount."
       return
     amount = order.amount or order.maxAmount
     amount = Math.floor(amount * 100000000) / 100000000
