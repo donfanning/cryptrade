@@ -27,7 +27,7 @@ class MtGoxPlatform extends Platform
           cb(err,result)
     
   trade: (order, cb)->
-    if order.maxAmount >= parseFloat(@config.min_order)
+    if order.maxAmount >= parseFloat(@config.min_order[order.asset])
       amount = order.amount or 10000
       switch order.type
         when 'buy'

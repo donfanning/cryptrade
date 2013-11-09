@@ -14,19 +14,24 @@ socket_io:
 
 platforms:
   mtgox:
-    min_order: 0.01
+    min_order: 
+      btc: 0.01
     max_retries: 10
     retry_interval: 15
   bitstamp:
-    min_order: 0.01 
+    min_order:
+      btc: 0.01
     max_retries: 10
     retry_interval: 15
   btce:
-    min_order: 0.01
+    min_order:
+      btc: 0.01
+      ltc: 0.1 
     max_retries: 10
     retry_interval: 15
   cexio:
-    min_order: 0.01
+    min_order: 
+      ghs: 0.01 
     max_retries: 10
     retry_interval: 15
 

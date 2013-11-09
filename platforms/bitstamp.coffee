@@ -9,7 +9,7 @@ class BitstampPlatform extends Platform
       throw new Error 'BistampPlatform: client id, API key and secret must be provided'
     @client = new Bitstamp @account.clientid,@account.key,@account.secret
   trade: (order, cb)->
-    if order.maxAmount * order.price < parseFloat(@config.min_order)
+    if order.maxAmount < parseFloat(@config.min_order[order.asset])
       cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount #{@config.min_order} USD"
       return
     orderCb = (err,result)->

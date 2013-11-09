@@ -23,7 +23,7 @@ class Platform
         cb err
       else
         cb null, result.order_id
-    if order.maxAmount * order.price < parseFloat(@config.min_order)
+    if order.maxAmount < parseFloat(@config.min_order[order.asset])
       cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount."
       return
     amount = order.amount or order.maxAmount
@@ -44,7 +44,7 @@ class Platform
         if err?
           cb "isOrderActive: reached max retries #{err}"
         else
-          cb null, orderId of result
+          cb null, orderId in result
         
     
   cancelOrder: (orderId, cb)->
