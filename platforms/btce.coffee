@@ -37,10 +37,11 @@ class Platform
 
   isOrderActive: (orderId, cb)->
     self = @
-    onError = (err)->
-      console.log err
+    onError = (err,next)->
       if err == 'no orders'
         cb null,false
+      else
+        next true
     attempt {retries:@config.max_retries,interval:@config.retry_interval*1000,onError:onError},
       ->
         self.client.makeRequest 'ActiveOrders', {}, @
