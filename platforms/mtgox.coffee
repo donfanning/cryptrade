@@ -37,7 +37,7 @@ class MtGoxPlatform extends Platform
           @createOrder 'ask',amount,cb
           break
     else
-      cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount #{@config.min_order} BTC"
+      cb "#{order.type.toUpperCase()} order wasn't created because the amount is less than minimum order amount"
 
   createOrder: (type, amount, cb)->
     self = @
