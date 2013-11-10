@@ -38,7 +38,7 @@ class Platform
   isOrderActive: (orderId, cb)->
     self = @
     onError = (err,next)->
-      if err == 'no orders'
+      if err.message == 'no orders'
         cb null,false
       else
         next true
