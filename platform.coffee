@@ -5,6 +5,8 @@ class Platform
     throw new Error 'Not implemented' 
   isOrderActive: (orderId, cb)->
     throw new Error 'Not implemented' 
+  getOrders: (cb)->
+    throw new Error 'Not implemented' 
   cancelOrder: (orderId, cb)->
     throw new Error 'Not implemented' 
   getPositions: (positions,cb)->

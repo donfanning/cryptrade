@@ -62,6 +62,20 @@ class MtGoxPlatform extends Platform
             order.oid == orderId
           cb null,order?
 
+  getOrders: (cb)->
+    self = @
+    attempt {retries:@config.max_retries,interval:@config.retry_interval*1000},
+      ->
+        self.client.orders @
+      ,(err,result)->
+        if err?
+          cb 'getOrders: reached max retries'
+        else
+          orders = []
+          _.each result.data, (order)->
+            orders.push order.oid
+          cb(orders)
+            
   cancelOrder: (orderId,cb)->
     self = @
     attempt {retries:@config.max_retries,interval:@config.retry_interval*1000},
