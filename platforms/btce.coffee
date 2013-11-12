@@ -9,8 +9,12 @@ class Platform
       throw new Error 'Btc-e: key and secret must be provided'
     key = @account.key
     @client = new BTCE @account.key,@account.secret, ->
+      nonce = undefined
       if fs.existsSync("nonce_#{key}.json") 
-        nonce = JSON.parse(fs.readFileSync("nonce_#{key}.json"))
+        try
+          nonce = JSON.parse(fs.readFileSync("nonce_#{key}.json"))
+        catch (e)->
+          nonce = Math.floor(new Date().getTime()/1000)
       else
         nonce = Math.floor(new Date().getTime()/1000)
       nonce++
