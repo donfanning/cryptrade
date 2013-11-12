@@ -32,7 +32,7 @@ popular exchanges such as MtGox,Bitstamp and BTC-E.
 ## Usage
   To start trading bot, just type
   
-    ./cryptrade.sh https://cryptotrader.org/backtests/6uGwz2NfNsbkuapop
+    ./cryptrade.sh https://cryptotrader.org/backtests/PqS7WC4NXv6PiF3RD
     
   The above command will start EMA 10/21 algorithm to trade at Mtgox BTC/USD with trading period set to 1h. 
   Also, you can run the tool with an algorithm stored locally. In this case your algorithm won't be sent to the server:
