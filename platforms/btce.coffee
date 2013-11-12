@@ -13,7 +13,7 @@ class Platform
       if fs.existsSync("nonce_#{key}.json") 
         try
           nonce = JSON.parse(fs.readFileSync("nonce_#{key}.json"))
-        catch (e)->
+        catch e
           nonce = Math.floor(new Date().getTime()/1000)
       else
         nonce = Math.floor(new Date().getTime()/1000)
